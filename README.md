@@ -20,7 +20,7 @@ npm install
 # Start the development server
 npm start
 ```
-The frontend application will run on: http://localhost:3000
+The frontend application will run on: http://localhost:3000.
 
 ### Backend / API
  
@@ -34,7 +34,7 @@ npm install
 # Start the server:
 node server.js
 ```
-The backend server will run on: http://localhost:5000
+The backend server will run on: http://localhost:5000. 
 This app expects a REST API running at `http://localhost:3001/api`, exposing the following endpoints:
  
 | Method | Endpoint                              | Purpose                  |
@@ -67,8 +67,8 @@ Start your backend server before starting the frontend, or API calls will fail. 
 
 ## Assumptions Made During Development
  
-- No authentication or multi-user support. The app assumes a single user/session interacting with one shared set of playlists — there's no login, no per-user data isolation.
-- Playlist and song IDs are assigned by the server, not the client. The frontend never generates its own IDs for persisted data — it relies on whatever the API returns after a create call.
+- No authentication or multi-user support. The app assumes a single user/session interacting with one shared set of playlists. So, there's no login, no per-user data isolation.
+- Playlist and song IDs are assigned by the server, not the client. The frontend never generates its own IDs for persisted data, instead it relies on whatever the API returns after a create call.
 - Data persistence is implemented using a JSON file instead of a database.
 - Duplicate song names are allowed within playlists.
 - Playlist ordering and song ordering are not customizable.
