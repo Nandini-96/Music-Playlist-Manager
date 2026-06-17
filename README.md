@@ -1,4 +1,4 @@
-# Getting Started with Create React App
+# Music Playlist Manager
 
 A web application that allows users to create playlists, add songs, remove songs, and manage their music collections through an intuitive and responsive user interface.
 
