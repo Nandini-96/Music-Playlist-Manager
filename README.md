@@ -51,6 +51,7 @@ Start your backend server before starting the frontend, or API calls will fail. 
 
 ### Frontend
 - **React.js (Create React App)**
+- **React Router DOM**
 - **JavaScript (ES6+)**
 - **CSS3**
 
