@@ -2,7 +2,7 @@ import { useCallback, useEffect, useState } from 'react';
 import { api } from './api/playlistApi';
 import Header from './components/Header';
 import PlaylistSidebar from './components/PlaylistSidebar';
-import PlaylistDetail from './components/PlaylistDetail';
+import HomePage from "./pages/HomePage";
 import CreatePlaylistModal from './components/CreatePlaylistModal';
 import EmptyState from './components/EmptyState';
 import './App.css';
@@ -16,7 +16,6 @@ const App = () => {
   const [showCreateModal, setShowCreateModal] = useState(false);
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const navigate = useNavigate();
-  const selectedPlaylist = playlists.find((p) => p.id === selectedId) || null;
 
   const loadPlaylists = useCallback(async () => {
     try {
@@ -148,23 +147,13 @@ const App = () => {
     <Routes>
       <Route
         path="/"
-        element={
-    playlists.length === 0 ? (
-      <EmptyState
-        onCreateClick={() =>
-          setShowCreateModal(true)
-        }
-      />
-    ) : (
-      <div className="home-screen">
-        <h1>Welcome to Music Playlist Manager</h1>
-
-        <p>
-          Select a playlist from the sidebar
-          to view and manage songs.
-        </p>
-      </div>
-    )
+  element={
+    <HomePage
+      playlists={playlists}
+      onCreateClick={() =>
+        setShowCreateModal(true)
+      }
+    />
   }
       />
 
