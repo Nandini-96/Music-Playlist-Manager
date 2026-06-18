@@ -1,9 +1,14 @@
+
+import { useNavigate } from "react-router-dom";
 const Header = ({
   playlistCount,
   onMenuClick,
   onCreateClick,
+  onHomeClick,
 }) =>
-{ return (
+{ 
+  const navigate = useNavigate();
+  return (
     <header className="header">
       <div className="header-left">
         <button
@@ -16,7 +21,8 @@ const Header = ({
             <path d="M4 6h16M4 12h16M4 18h16" />
           </svg>
         </button>
-        <div className="brand">
+        <div className="brand" onClick={() => {onHomeClick?.();navigate("/");}}
+  style={{ cursor: "pointer" }}>
           <span className="brand-icon" aria-hidden="true">
             ♫
           </span>

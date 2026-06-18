@@ -1,1 +1,18 @@
-[]
+[
+  {
+    "id": "631e81ef-5240-4aeb-89ee-96234b8a6d87",
+    "name": "cd",
+    "description": "",
+    "songs": [
+      {
+        "id": "a7dfaecb-50a8-4483-8101-4ca61d14bfcd",
+        "title": "d",
+        "artist": "d",
+        "duration": "",
+        "addedAt": "2026-06-18T05:15:36.907Z"
+      }
+    ],
+    "createdAt": "2026-06-18T05:15:29.086Z",
+    "updatedAt": "2026-06-18T05:15:36.907Z"
+  }
+]

@@ -6,15 +6,16 @@ import PlaylistDetail from './components/PlaylistDetail';
 import CreatePlaylistModal from './components/CreatePlaylistModal';
 import EmptyState from './components/EmptyState';
 import './App.css';
-
-function App() {
+import { Routes, Route, useNavigate } from "react-router-dom";
+import PlaylistPage from "./pages/PlaylistPage";
+const App = () => {
   const [playlists, setPlaylists] = useState([]);
   const [selectedId, setSelectedId] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
   const [showCreateModal, setShowCreateModal] = useState(false);
   const [sidebarOpen, setSidebarOpen] = useState(false);
-
+  const navigate = useNavigate();
   const selectedPlaylist = playlists.find((p) => p.id === selectedId) || null;
 
   const loadPlaylists = useCallback(async () => {
@@ -59,6 +60,7 @@ function App() {
     setSelectedId(created.id);
     setShowCreateModal(false);
     setSidebarOpen(false);
+    navigate(`/playlist/${created.id}`);
   };
 
   const handleDeletePlaylist = async (id) => {
@@ -106,6 +108,7 @@ function App() {
         playlistCount={playlists.length}
         onMenuClick={() => setSidebarOpen(true)}
         onCreateClick={() => setShowCreateModal(true)}
+         onHomeClick={() => setSelectedId(null)}
       />
 
       {error && (
@@ -137,19 +140,46 @@ function App() {
 
         <main className="main-content">
           {loading ? (
-            <div className="loading-state">
-              <div className="spinner" />
-              <p>Loading playlists...</p>
-            </div>
-          ) : selectedPlaylist ? (
-            <PlaylistDetail
-              playlist={selectedPlaylist}
-              onAddSong={handleAddSong}
-              onRemoveSong={handleRemoveSong}
-            />
-          ) : (
-            <EmptyState onCreateClick={() => setShowCreateModal(true)} />
-          )}
+    <div className="loading-state">
+      <div className="spinner" />
+      <p>Loading playlists...</p>
+    </div>
+  ) : (
+    <Routes>
+      <Route
+        path="/"
+        element={
+    playlists.length === 0 ? (
+      <EmptyState
+        onCreateClick={() =>
+          setShowCreateModal(true)
+        }
+      />
+    ) : (
+      <div className="home-screen">
+        <h1>Welcome to Music Playlist Manager</h1>
+
+        <p>
+          Select a playlist from the sidebar
+          to view and manage songs.
+        </p>
+      </div>
+    )
+  }
+      />
+
+      <Route
+        path="/playlist/:id"
+        element={
+          <PlaylistPage
+            playlists={playlists}
+            onAddSong={handleAddSong}
+            onRemoveSong={handleRemoveSong}
+          />
+        }
+      />
+    </Routes>
+  )}
         </main>
       </div>
 

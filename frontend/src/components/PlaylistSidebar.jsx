@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 const PlaylistSidebar = ({
   playlists,
   selectedId,
@@ -9,7 +10,8 @@ const PlaylistSidebar = ({
   onDelete,
   onClose,
 }) => {
-  const [error, setError] = useState("")
+  const [error, setError] = useState("");
+  const navigate = useNavigate();
   const handleDelete = async (e, id, name) => {
     e.stopPropagation();
     if (window.confirm(`Delete "${name}" and all its songs?`)) {
@@ -57,11 +59,15 @@ const PlaylistSidebar = ({
               className={`playlist-item ${selectedId === playlist.id ? 'active' : ''}`}
               role="button"
               tabIndex={0}
-              onClick={() => onSelect(playlist.id)}
+              onClick={() => {
+  onSelect(playlist.id);
+  navigate(`/playlist/${playlist.id}`);
+}}
               onKeyDown={(e) => {
                 if (e.key === 'Enter' || e.key === ' ') {
                   e.preventDefault();
                   onSelect(playlist.id);
+navigate(`/playlist/${playlist.id}`);
                 }
               }}
             >
